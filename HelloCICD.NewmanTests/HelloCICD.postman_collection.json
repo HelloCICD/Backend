@@ -51,12 +51,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:51127/api/values/{{ProductId}}",
+					"raw": "http://localhost:50687/api/values/{{ProductId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "51127",
+					"port": "50687",
 					"path": [
 						"api",
 						"values",
@@ -111,12 +111,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:51127/api/values/{{ProductId}}",
+					"raw": "http://localhost:50687/api/values/{{ProductId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "51127",
+					"port": "50687",
 					"path": [
 						"api",
 						"values",
@@ -153,14 +153,19 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cab0ae1b-e6ce-4aa8-be49-2f9c3f5f6c94",
+						"id": "0466f1ed-635c-43c7-99d2-b62a558f413e",
 						"type": "text/javascript",
 						"exec": [
 							"//reset SelectedProduct variable at the end of the flow",
 							"postman.setEnvironmentVariable(\"SelectedProducts\", \"[]\");",
 							"",
 							"//reset Guid variable at the end of the flow",
-							"postman.setEnvironmentVariable(\"CartId\", \"0000-0000-0000\");"
+							"postman.setEnvironmentVariable(\"CartId\", \"0000-0000-0000\");",
+							"",
+							"//Tests",
+							"var parsedResponse = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Total is correct\"] = parsedResponse.totalPrice === 25.99"
 						]
 					}
 				}
@@ -175,15 +180,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"CartId\" : \"cart-id\",\n\t\"CartProducts\" : {{SelectedProducts}}\n}"
+					"raw": "{\n\t\"CartId\" : \"{{CartId}}\",\n\t\"CartProducts\" : {{SelectedProducts}}\n}"
 				},
 				"url": {
-					"raw": "http://localhost:51127/api/values/",
+					"raw": "http://localhost:50687/api/values/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "51127",
+					"port": "50687",
 					"path": [
 						"api",
 						"values",
