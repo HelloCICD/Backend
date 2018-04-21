@@ -1,1 +1,1 @@
-﻿BuildTrigger = 1
+﻿BuildTrigger = 2
